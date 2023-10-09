@@ -44,10 +44,10 @@ func (g *Group) Go(f func() error) {
 	g.wg.Add(1)
 	go func() {
 		defer func() {
-			g.done()
 			if err := recover(); err != nil {
 				g.err = fmt.Errorf(`gogroup go has happened error:%v`, err)
 			}
+			g.done()
 		}()
 
 		if err := f(); err != nil {
@@ -74,10 +74,10 @@ func (g *Group) TryGo(f func() error) bool {
 	g.wg.Add(1)
 	go func() {
 		defer func() {
-			g.done()
 			if err := recover(); err != nil {
 				g.err = fmt.Errorf(`gogroup trygo has happened error:%v`, err)
 			}
+			g.done()
 		}()
 
 		if err := f(); err != nil {
@@ -89,6 +89,7 @@ func (g *Group) TryGo(f func() error) bool {
 			})
 		}
 	}()
+
 	return true
 }
 

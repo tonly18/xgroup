@@ -2,7 +2,6 @@ package gogroup_test
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"github.com/tonly18/gogroup"
 	"runtime"
@@ -33,14 +32,18 @@ func TestGogroup(t *testing.T) {
 
 	fmt.Println("ctx:::::::::", ctx.Err())
 	fmt.Println("ctx:::::::::", context.Cause(ctx))
+}
 
-	if err := gogroup.DoGo(func() error {
-		fmt.Printf("完成任务(DoGoroutine): %s\n", time.Now().Format(time.RFC3339))
-		var m map[int]int
-		m[1] = 1
-		return errors.New("asdadfadsf")
-	}); err != nil {
-		fmt.Println("ctx-err:::::::::", err)
+func TestGogroupDoGo(t *testing.T) {
+	for i := 0; i < 1000; i++ {
+		if err := gogroup.DoGo(func() error {
+			fmt.Printf("完成任务(DoGoroutine): %s, %v\n", time.Now().Format(time.RFC3339), i)
+			var m map[int]int
+			m[1] = 1
+			//return errors.New("happen error")
+			return nil
+		}); err != nil {
+			fmt.Println("ctx-err:::::::::", err)
+		}
 	}
-
 }
