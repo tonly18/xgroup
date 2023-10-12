@@ -43,7 +43,7 @@ func TestGogroupDoGo(t *testing.T) {
 			//return errors.New("happen error")
 			return nil
 		}); err != nil {
-			fmt.Println("ctx-err:::::::::", err)
+			fmt.Println("ctx-err:::::::::", i, err)
 		}
 	}
 }
