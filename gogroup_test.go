@@ -1,16 +1,16 @@
-package gogroup_test
+package xgroup_test
 
 import (
 	"context"
 	"fmt"
-	"github.com/tonly18/gogroup"
+	"github.com/tonly18/xgroup"
 	"runtime"
 	"testing"
 	"time"
 )
 
 func TestGogroup(t *testing.T) {
-	goGroup, ctx := gogroup.WithContext(context.Background())
+	goGroup, ctx := xgroup.WithContext(context.Background())
 	goGroup.SetLimit(5)
 
 	for i := 1; i < 20; i++ {
@@ -36,7 +36,7 @@ func TestGogroup(t *testing.T) {
 
 func TestGogroupDoGo(t *testing.T) {
 	for i := 0; i < 1000; i++ {
-		if err := gogroup.DoGo(func() error {
+		if err := xgroup.DoGo(func() error {
 			fmt.Printf("完成任务(DoGoroutine): %s, %v\n", time.Now().Format(time.RFC3339), i)
 			var m map[int]int
 			m[1] = 1
