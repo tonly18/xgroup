@@ -1,4 +1,4 @@
 # gogroup
 golang执行goroutine
 
-go get -u github.com/tonly18/gogroup
+go get -u github.com/tonly18/xgroup
